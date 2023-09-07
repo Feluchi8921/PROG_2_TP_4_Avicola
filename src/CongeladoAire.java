@@ -1,24 +1,28 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class CongeladoAire extends ProductoCongelado{
+public class CongeladoAire extends ProductoHeladera {
     //Atributos
     private int porcNitrogeno;
     private int porcOxigeno;
     private int porcDioxidoCarbono;
     private int porcVaporAgua;
+    private ArrayList<CongeladoAire> congeladosAire = new ArrayList<>();
 
     //Constructor
 
-    public CongeladoAire(LocalDate fechaVencimiento, int nro_lote, LocalDate fechaEnvasado, int codSupervision, String granja, int temperatura, int porcNitrogeno, int porcOxigeno, int porcDioxidoCarbono, int porcVaporAgua) {
-        super(fechaVencimiento, nro_lote, fechaEnvasado, codSupervision, granja, temperatura);
+    public CongeladoAire(LocalDate fechaVencimiento, int nroLote, String granja, LocalDate fechaEnvasado, int codSupervision, int temperatura, int porcNitrogeno, int porcOxigeno, int porcDioxidoCarbono, int porcVaporAgua) {
+        super(fechaVencimiento, nroLote, granja, fechaEnvasado, codSupervision, temperatura);
         this.porcNitrogeno = porcNitrogeno;
         this.porcOxigeno = porcOxigeno;
         this.porcDioxidoCarbono = porcDioxidoCarbono;
         this.porcVaporAgua = porcVaporAgua;
+        this.congeladosAire = new ArrayList<>(); //inicializo el arraylist
     }
 
     //Metodos
     //Getters and Setters
+
 
     public int getPorcNitrogeno() {
         return porcNitrogeno;
@@ -51,11 +55,16 @@ public class CongeladoAire extends ProductoCongelado{
     public void setPorcVaporAgua(int porcVaporAgua) {
         this.porcVaporAgua = porcVaporAgua;
     }
+    //Agregar productos
+    public void addCongeladosAire(CongeladoAire congeladoAire){
+        congeladosAire.add(congeladoAire);
+    }
+
 
     //String
     @Override
     public String toString(){
-        return "Fecha de vencimiento: "+getFechaVencimiento()+"\nNúmero de Lote: "+getNro_lote()+"\nFecha de envasado: "
+        return "Fecha de vencimiento: "+getFechaVencimiento()+"\nNúmero de Lote: "+getNroLote()+"\nFecha de envasado: "
                 +getFechaEnvasado()+"\nCódigo Organismo de Supervisión: "+getCodSupervision()+
                 "\nGranja de origen: "+getGranja()+ "\nTemperatura: "+getTemperatura()+"\nComposición del Aire:"
                 +"\n-Nitrogeno: "+getPorcNitrogeno()+"\n-Oxígeno: "+getPorcOxigeno()+"\nDioxido de Carbono: "+getPorcDioxidoCarbono()
